@@ -2,6 +2,7 @@ package edu.sjsu.cmpe.cache.repository;
 
 import java.util.List;
 
+import com.yammer.dropwizard.jersey.params.LongParam;
 import edu.sjsu.cmpe.cache.domain.Entry;
 
 /**
@@ -37,4 +38,11 @@ public interface CacheInterface {
      */
     List<Entry> getAll();
 
+    /**
+     * Removes the Entry with for given key
+     *
+     * @param key
+     *          a entry instance to be removed from the repository
+     */
+    void remove(Long key);
 }

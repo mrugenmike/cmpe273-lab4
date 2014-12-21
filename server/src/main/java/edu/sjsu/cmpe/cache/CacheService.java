@@ -15,7 +15,7 @@ import edu.sjsu.cmpe.cache.domain.Entry;
 import edu.sjsu.cmpe.cache.repository.CacheInterface;
 import edu.sjsu.cmpe.cache.repository.InMemoryCache;
 
-public class CacheService extends Service<CacheServiceConfiguration> {
+public class    CacheService extends Service<CacheServiceConfiguration> {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
