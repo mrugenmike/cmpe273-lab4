@@ -42,14 +42,9 @@ public class CRDTClient {
         final Map<String, String> serverAndValues = distributedCacheService.asyncGet(key);
         HashMap<String, Integer> alphabetAndCount = new HashMap<String, Integer>(3);
 
-        for(Map.Entry<String,String> entry:serverAndValues.entrySet()){
-            System.out.println(" server-key: "+entry.getKey()+" server-value: "+entry.getValue());
-        }
-
         for(Map.Entry<String,String> entry: serverAndValues.entrySet()){
             String serverUrl = entry.getKey();
             String alphabet = entry.getValue();
-            System.out.println("Current entry: "+ serverUrl +" value:"+ alphabet);
             if(alphabetAndCount.containsKey(alphabet) && alphabet!=null){
                 int value = alphabetAndCount.get(alphabet);
                 alphabetAndCount.put(alphabet, value + 1);
@@ -58,15 +53,11 @@ public class CRDTClient {
             }
         }
 
-        for(Map.Entry<String,Integer> entry:alphabetAndCount.entrySet()){
-            System.out.println("key: "+entry.getKey()+" value: "+entry.getValue());
-        }
-
         Integer max = null;
         if (alphabetAndCount.size()>0){
             max = Collections.max(alphabetAndCount.values());
-            System.out.println("max="+max);
         }
+
         String majorityValue = null;
         for(Map.Entry entry :alphabetAndCount.entrySet()) {
             if(entry.getValue() == max){
@@ -128,7 +119,6 @@ class PutCallBackImpl implements Callback<JsonNode> {
     }
 
     public void completed(HttpResponse<JsonNode> response) {
-        System.out.println("response status: "+response.getStatus());
         if(response.getStatus()==200){
             System.out.println("Request Succeeded for node "+ serverUrl);
             statusMap.put(serverUrl,true);

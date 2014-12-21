@@ -29,13 +29,14 @@ public class Client {
         sleepFor(30000); // Required for Startup of Node A in an inconsistent way.
 
         final CRDTClient crdtClient2 = new CRDTClient(servers);
+        System.out.println("Initiating step 2 -- Read node values for read repair operation");
         crdtClient2.get(1);
         System.out.println("Existing Cache Client...");
     }
 
     private static void sleepFor(int sleepInMillis) {
         try {
-            System.out.println("Sleeping for now");
+            System.out.println("Sleeping for " + (sleepInMillis / 1000)+"seconds");
             Thread.sleep(sleepInMillis);
         } catch (InterruptedException e) {
             e.printStackTrace();
